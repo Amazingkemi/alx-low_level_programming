@@ -1,29 +1,31 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * _strstr - Find first occurence of given string in another string
- * @haystack: String to search through
- * @needle: String to search for
+ * _strpbrk - Find first occurence of any accepted byte
+ * @s: String to search
+ * @accept: Bytes accepted
  *
- * Return: Pointer to beginning of located string
+ * Return: Return pointer to first occurence of byte
  */
-char *_strstr(char *haystack, char *needle)
+char *_strpbrk(char *s, char *accept)
 {
-	char *start;
-		char *search;
-	while (*haystack != '\0')
+	unsigned int i, j;
+	char *f;
+
+	i = 0;
+	while (s[i] != 0)
 	{
-		start = haystack;
-		search = needle;
-		while (*search == *haystack && *haystack != 0
-				&& *search != 0)
+		j = 0;
+		while (accept[j] != 0)
 		{
-			haystack++;
-			search++;
+			if (s[i] == accept[j])
+			{
+				f = &s[i];
+				return (f);
+			}
+			j++;
 		}
-		if (*search == 0)
-			return (start);
-		haystack = start + 1;
+		i++;
 	}
 	return (0);
 }
